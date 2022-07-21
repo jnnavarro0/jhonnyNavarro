@@ -1,0 +1,105 @@
+||==Configuración para Switches==||
+
+enable
+conf ter
+hostname SW-4
+enable secret cisco
+line vty 0 15
+password DCCO
+login
+exit
+line console 0
+password H304
+login
+exit
+service password-encryption
+banner motd "      !!No entrar!"
+interface vlan 1
+ip address 172.20.64.102 255.255.255.0
+no shutdown
+exit
+ip default-gateway 172.20.64.1
+exit
+wr
+
+||==Configurar ssh y telnet==||
+
+conf ter
+ip domain-name cisco.com
+crypto key generate rsa general-keys modulus 1024
+ip ssh version 2
+username ADMIN secret CISCO
+line vty 0 15
+login local
+end
+wr
+
+||==Configurar router==||
+enable 
+configure terminal 
+hostname COTOPAXI
+enable secret cisco
+service password-encryption 
+banner motd "      !!No ingresar!!"
+line vty 0 4
+password DCCO
+login
+exit
+line console 0
+password H304
+login
+exit
+line aux 0
+password H304
+login
+end
+wr
+
+||==Configurar ssh y telnet (Router)==||
+
+conf ter
+ip domain-name cisco.com
+crypto key generate rsa general-keys modulus 1024
+ip ssh version 2
+username ADMIN secret CISCO
+line vty 0 4
+transport input all
+login local
+do wr
+
+
+||==Calidad de Servicios (Route ESMERALDA)==||
+
+conf ter
+class-map match-all ALTA
+match ip dscp af11 
+match protocol ospf 
+class-map match-all MEDIA
+match ip dscp af31
+match protocol ssh
+class-map match-all BAJA
+match ip dscp af41
+match protocol http
+match protocol https
+exit
+policy-map ALERTAS
+class ALTA
+set precedence 6
+class MEDIA
+set precedence 4
+class BAJA
+set precedence 2
+exit
+exit
+interface serial 0/1/0
+service-policy output ALERTAS
+
+
+=========DHCP - VLAN========
+
+ip dhcp pool vlan40
+network 172.20.128.0 255.255.224.0
+default-router 172.20.128.1
+dns-server 172.20.160.34
+exit
+ip dhcp excluded-address 172.20.128.2 172.20.128.99
