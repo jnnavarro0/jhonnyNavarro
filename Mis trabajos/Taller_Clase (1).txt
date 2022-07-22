@@ -97,9 +97,18 @@ service-policy output ALERTAS
 
 =========DHCP - VLAN========
 
-ip dhcp pool vlan40
-network 172.20.128.0 255.255.224.0
-default-router 172.20.128.1
-dns-server 172.20.160.34
+ip dhcp pool vlan20
+network 172.20.32.0 255.255.224.0
+default-router 172.20.32.1
+dns-server 172.20.160.2
 exit
-ip dhcp excluded-address 172.20.128.2 172.20.128.99
+ip dhcp excluded-address 172.20.32.2 172.20.32.99
+
+
+=========== ACL =================
+
+ip access-list
+
+
+borrar ACL
+no access-list 101
