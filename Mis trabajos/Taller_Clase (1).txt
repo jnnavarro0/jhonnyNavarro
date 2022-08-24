@@ -2,7 +2,7 @@
 
 enable
 conf ter
-hostname SW-4
+hostname SW
 enable secret cisco
 line vty 0 15
 password DCCO
@@ -15,10 +15,10 @@ exit
 service password-encryption
 banner motd "      !!No entrar!"
 interface vlan 1
-ip address 172.20.64.102 255.255.255.0
+ip address 192.168.10.102 255.255.255.0
 no shutdown
 exit
-ip default-gateway 172.20.64.1
+ip default-gateway 172.20.0.1
 exit
 wr
 
@@ -107,8 +107,61 @@ ip dhcp excluded-address 172.20.32.2 172.20.32.99
 
 =========== ACL =================
 
-ip access-list
+ESTANDAR
+
+ip access-list standard HOST
+permit 192.168.10.3 0.0.0.3
 
 
-borrar ACL
+access-list 10 deny 192.168.20.0 0.0.0.255
+
+
+EXTENDIDAS
+
+access-list 101 deny tcp 192.168.20.0 0.0.0.255 host 192.168.30.2 eq 80
+access-list 101 permit ip any any 
+interface gigabitEthernet 0/0
+ip access-group 101 in
+
+
+
+ip access-list extended VLAN30_SERVER1
+permit tcp 172.20.96.1 0.0.31.255 host 172.20.160.22 eq 80
+deny tcp 172.20.96.1 0.0.31.255 host 172.20.160.2 eq 80
+deny tcp 172.20.96.1 0.0.31.255 host 172.20.160.34 eq 80
+permit icmp 172.22.34.96 0.0.0.15 host 172.22.34.62
+
+ip access-list extended ALL
+permit tcp any 172.20.96.1 0.0.31.255 established
+exit
+interface gigabitEthernet 0/0/0
+ip access-group VLAN30_SERVER1 in
+ip access-group ALL out
+exit
+
+
+-----borrar ACL------
 no access-list 101
+
+no ip access-list extended VLAN30_SERVER1
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+ip access-list extended SERVER1
+permit ip host 172.20.160.22 host 172.20.160.34 
+permit ip any any 
+interface gigabitEthernet 0/0/1
+ip access-group SERVER1 out
+exit
+
