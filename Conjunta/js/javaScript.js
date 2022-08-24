@@ -41,3 +41,70 @@ function arreglo() {
         }
     }
 }
+
+//Validaciones
+
+function validateid() {
+    var expRegid = /^[0-9]{10}$/;
+    var Personid = document.getElementById("id");
+    if (!expRegid.exec(Personid.value)) {
+        alert("Formato incorrecto");
+        document.getElementById("id").value="";
+        return false;
+
+    } else {
+        return true;
+    }
+}
+
+function validateNamePerson() {
+    var expRegNamePerson = /^[a-zA-ZÑñÁáÉéÍíÓóÚúÜü\s]+$/;
+    var PersonName = document.getElementById("Name");
+    if (!expRegNamePerson.exec(PersonName.value)) {
+        alert("Solo se aceptan letras");
+        document.getElementById("Name").value="";
+        return false;
+
+    } else {
+        return true;
+    }
+}
+
+function validateNameProducto() {
+    var expRegNameProducto = /^[a-zA-ZÑñÁáÉéÍíÓóÚúÜü\s]+$/;
+    var NameProducto = document.getElementById("Producto");
+    if (!expRegNameProducto.exec(NameProducto.value)) {
+        alert("Solo se aceptan letras");
+        document.getElementById("Producto").value="";
+        return false;
+
+    } else {
+        return true;
+    }
+}
+
+function validatePrice() {
+    var expRegPrice = /^[0-9]$/;
+    var Price = document.getElementById("Precio");
+    if (!expRegPrice.exec(Price.value)) {
+        alert("Formato incorrecto");
+        document.getElementById("Precio").value="";
+        return false;
+
+    } else {
+        return true;
+    }
+}
+
+function validateCantidad() {
+    var expRegCantidad = /^[0-9]$/;
+    var Cantidad = document.getElementById("Cantidad");
+    if (!expRegCantidad.exec(Cantidad.value)) {
+        alert("Formato incorrecto");
+        document.getElementById("Cantidad").value="";
+        return false;
+
+    } else {
+        return true;
+    }
+}
