@@ -22,8 +22,8 @@
 			<p id="pregunta"> Analizar una cadena de texto en un objeto DOM XML y extraer
 				esa Información con JavaScript</p>
 			<p id="descripcion"> Para este ejercicio se utilizara una cadena de texto
-				sobre mamiferos de animales dentro de una tienda.</p>
-			<p id="p3">Tienda de animales</p>
+				sobre animales mamiferos.</p>
+			<p id="p3">Animales:</p>
 			<p style="padding-left:15%;">
 				<button onclick="traermamiferor(0);"> Traer animal vivo</button>
 				<button onclick="traermamiferor(1);"> Traer animal muerto</button>
@@ -32,7 +32,6 @@
 			<p style="padding-left:35%;" id="p1"></p>
 			<br>
 			<button onclick="window.location.href='../../index.html'">Menu principal</button>
-			<p id="demo"></p>
 		</div>
 
 
@@ -47,7 +46,8 @@
 		xmlDoc = parser.parseFromString(text, "text/xml");
 
 		function traermamiferor(mamifero){
-			document.getElementById('demo').innerHTML = "Mamifero: " + xmlDoc.getElementsByTagName('mamifero')[mamifero].childNodes[0].nodeValue;
+			document.getElementById('p1').innerHTML = "Mamifero: " + 
+			xmlDoc.getElementsByTagName('mamifero')[mamifero].childNodes[0].nodeValue;
         }	
 		
 	</script>

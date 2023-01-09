@@ -20,9 +20,10 @@
 <p>Escoja su género de películas preferido para desplegar una tabla con la información correspondiente</p>
 <select id="myselect" onchange="change_myselect(this.value)">
   <option value="">Elija una de las siguientes opciones.</option>
-  <option value="Terror">Terror</option>
-  <option value="Drama">Drama</option>
-  <option value="Accion">Accion</option>
+  <option value="Patrick Williams">Patrick Williams</option>
+  <option value="Yodel Fredder">Yodel Fredder</option>
+  <option value="Bill Skarsgard">Bill Skarsgård</option>
+  <option value="Vera Farmiga">Vera Farmiga</option>
 </select>
 <p id="demo"></p>
 <br>
@@ -31,27 +32,37 @@
 
 <script>
 
-// Desarrolle el script correspondiente
-function change_myselect(sel) {
-  var obj, dbParam, xmlhttp;
-  obj = { table: sel, limit: 20 };
-  dbParam = JSON.stringify(obj);
-  xmlhttp = new XMLHttpRequest();
-  document.getElementById('demo').innerHTML = xmlhttp.getElementsByTagName('Genero')[0].childNodes[0].nodeValue;
-  
-  
-  xmlhttp.onreadystatechange = function() {
+  // Desarrolle el script correspondiente
+  function change_myselect(sel) {
+    var obj, dbParam, xmlhttp, dato;
     
-	
-	
-    };
-	
-	
-  xmlhttp.open("GET", "./ListaPeliculas.json", true);
-  xmlhttp.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
-  xmlhttp.send("x=" + dbParam);
-}
-</script>
+    obj = { table: sel, limit: 20 };
+    dbParam = JSON.stringify(obj);
+    xmlhttp = new XMLHttpRequest();
+  
+    xmlhttp.onreadystatechange = function() {
+      if(this.readyState == 4 && this.status == 200)  {
+          dato = JSON.parse(this.responseText);
+
+          var cuadro = "";
+          cuadro += "<br><center><table border=2><tr><td><b>GENERO</b></td><td><b>NOMBRE</b></td></tr>";
+
+          for(var i in dato.peliculas){
+            if(dato.peliculas[i]. Protagonista == sel){
+              cuadro += "<tr><td>" + dato.peliculas[i].Genero + "</td><td>" + dato.peliculas[i].Nombre + "</td></tr>";
+            }
+          }
+      }
+        cuadro += "</table></center>";
+        document.getElementById('demo').innerHTML = cuadro;
+      };
+    
+    
+    xmlhttp.open("GET", "./ListaPeliculas.json", true);
+    xmlhttp.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
+    xmlhttp.send("x=" + dbParam);
+  }
+  </script>
 
 </body>
 </html>

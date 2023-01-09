@@ -1,18 +1,18 @@
 {
 	"peliculas":[{
 		"Genero": "Terror",
-		"Nombre": "Annabel ",
+		"Nombre": "Insiduos ",
 		"Protagonista": "Patrick Williams"
 	},
 	{
 		"Genero": "Terror",
-		"Nombre": "Terror en Silent Hills",
+		"Nombre": "La calle del terror",
 		"Protagonista": "Yodel Fredder"
 	},
 	{
 		"Genero": "Terror",
 		"Nombre": "It ",
-		"Protagonista": "Bill Skarsgård"
+		"Protagonista": "Bill Skarsgard"
 	},
 	{
 		"Genero": "Terror",
@@ -21,46 +21,46 @@
 	},
 	{
 		"Genero": "Accion",
-		"Nombre": "John Wick ",
-		"Protagonista": "Keanu Reaves"
+		"Nombre": "Daredevil",
+		"Protagonista": "Patrick Williams"
 	},
 
 	{
 		"Genero": "Accion",
-		"Nombre": "Rambo ",
-		"Protagonista": "Sylvester Stallone"
+		"Nombre": "PUNTO DE CONTROL ",
+		"Protagonista": "Yodel Fredder"
 	},
 
 	{
 		"Genero": "Accion",
-		"Nombre": "Mision Imposible ",
-		"Protagonista": "Tom Cruise"
+		"Nombre": "Deadpool 2",
+		"Protagonista": "Bill Skarsgard"
 	},
 
 	{
 		"Genero": "Accion",
-		"Nombre": "Duro de Matar",
-		"Protagonista": "Bruce Willis"
+		"Nombre": "El pasajero",
+		"Protagonista": "Vera Farmiga"
 	},
 	{
 		"Genero": "Drama",
-		"Nombre": "After",
-		"Protagonista": "Josephine Langford"
+		"Nombre": "Amazing Ape",
+		"Protagonista": "Patrick Williams"
 	},
 	{
 		"Genero": "Drama",
-		"Nombre": "El club de la Pelea",
-		"Protagonista": "Brad Pitt"
+		"Nombre": "Tu Eres Mi Hogar",
+		"Protagonista": "Yodel Fredder"
 	},
 	{
 		"Genero": "Drama",
-		"Nombre": "EL Origen",
-		"Protagonista": "Leonardo Di caprio"
+		"Nombre": "Nueve dias",
+		"Protagonista": "Bill Skarsgard"
 	},
 	{
 		"Genero": "Drama",
-		"Nombre": "El padrino",
-		"Protagonista": "Al Pacino"
+		"Nombre": "El juez",
+		"Protagonista": "Vera Farmiga"
 	}	
 	]
 }

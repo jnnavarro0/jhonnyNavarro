@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title>Pregunta 4</title>
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.8.1/css/all.css"
+        integrity="sha384-50oBUHEmvpQ+1lW4y57PTFmhCaXp0ML5d60M1M7uH2+nqUivzIebhndOJK28anvf" crossorigin="anonymous">
+    <style type="text/css">
+        #background {
+            position: absolute;
+            width: 99%;
+            height: 130%;
+        }
+
+        #fixed {
+            position: absolute;
+            top: 0px;
+            left: 0px;
+        }
+    </style>
+</head>
+
+<body>
+    <div>
+        <img id="background" src="../../Imagenes/fondo.jpg" />
+    </div>
+    <div id="fixed" style="padding-left:30%; padding-top: 10%;">
+        <br>
+        <img src="../../Imagenes/selloespe.jpg" width="65%" align="center">
+        <h1 style="padding-left:25%;">Pregunta 4</h1>
+        <p id="pregunta"> Analizar una cadena de texto en un objeto DOM XML y extraer
+            esa Información con JavaScript</p>
+        <p id="descripcion"> Para este ejercicio se utilizara una cadena de texto
+            sobre mamiferos de animales dentro de una tienda.</p>
+        <p id="p3">Venta de Productos</p>
+        <p style="padding-left:15%;">
+            <button onclick="traerDatos();"> Ver ventas</button>
+        </p>
+        <p style="padding-left:35%;" id="p1"></p>
+        <br>
+        <button onclick="window.location.href='../../index.html'">Menu principal</button>
+    </div>
+
+    <script>
+        function change_myselect(sel) {
+            var obj, dbParam, xmlhttp, myObj, x, txt = "";
+            obj = { table: sel, limit: 20 };
+            dbParam = JSON.stringify(obj);
+            xmlhttp = new XMLHttpRequest();
+            xmlhttp.onreadystatechange = function () {
+                if (this.readyState == 4 && this.status == 200) {
+                    myObj = JSON.parse(this.responseText);
+                    txt += "<table border='2'><tr><td>NOMBRE</td><td>PROTAGONISTA</td></tr>";
+
+                    for (x in myObj.peliculas) {
+                        if (myObj.peliculas[x].Genero == sel) {
+                            txt += "<tr><td>" + myObj.peliculas[x].Nombre + "</td><td>" + myObj.peliculas[x].Protagonista + "</td></tr>";
+                        }
+                    }
+                    txt += "</table>"
+                    document.getElementById("demo").innerHTML = txt;
+                }
+            };
+            xmlhttp.open("GET", "./ListaPeliculas.json", true);
+            xmlhttp.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
+            xmlhttp.send("x=" + dbParam);
+        }
+    </script>
+
+    <script>window.jQuery || document.write('<script src="../../js/vendor/jquery-1.11.2.min.js"><\/script>')</script>
+    <script src="../../js/vendor/bootstrap.min.js"></script>
+    <script src="../../js/main.js"></script>
+
+</body>
+
+</html>
