@@ -28,42 +28,50 @@
         <br>
         <img src="../../Imagenes/selloespe.jpg" width="65%" align="center">
         <h1 style="padding-left:25%;">Pregunta 4</h1>
-        <p id="pregunta"> Analizar una cadena de texto en un objeto DOM XML y extraer
-            esa Información con JavaScript</p>
-        <p id="descripcion"> Para este ejercicio se utilizara una cadena de texto
-            sobre mamiferos de animales dentro de una tienda.</p>
+        <p id="pregunta"> Mostrar datos del XML utilizando AJAX</p>
         <p id="p3">Venta de Productos</p>
         <p style="padding-left:15%;">
-            <button onclick="traerDatos();"> Ver ventas</button>
+            <button onclick="loadDoc();"> Ver ventas</button>
         </p>
-        <p style="padding-left:35%;" id="p1"></p>
+        <center><table id="demo" border="1" width=800></table></center>
         <br>
         <button onclick="window.location.href='../../index.html'">Menu principal</button>
     </div>
 
     <script>
-        function change_myselect(sel) {
-            var obj, dbParam, xmlhttp, myObj, x, txt = "";
-            obj = { table: sel, limit: 20 };
-            dbParam = JSON.stringify(obj);
-            xmlhttp = new XMLHttpRequest();
-            xmlhttp.onreadystatechange = function () {
+        function loadDoc() {
+            var xhttp = new XMLHttpRequest();
+            xhttp.onreadystatechange = function () {
                 if (this.readyState == 4 && this.status == 200) {
-                    myObj = JSON.parse(this.responseText);
-                    txt += "<table border='2'><tr><td>NOMBRE</td><td>PROTAGONISTA</td></tr>";
-
-                    for (x in myObj.peliculas) {
-                        if (myObj.peliculas[x].Genero == sel) {
-                            txt += "<tr><td>" + myObj.peliculas[x].Nombre + "</td><td>" + myObj.peliculas[x].Protagonista + "</td></tr>";
-                        }
-                    }
-                    txt += "</table>"
-                    document.getElementById("demo").innerHTML = txt;
+                    myFunction(this);
                 }
             };
-            xmlhttp.open("GET", "./ListaPeliculas.json", true);
-            xmlhttp.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
-            xmlhttp.send("x=" + dbParam);
+            xhttp.open("GET", "./xml/ventas.xml", true);
+            xhttp.send();
+        }
+
+        function myFunction(xml) {
+            var i;
+            var xmlDoc = xml.responseXML;
+
+            var table = "<tr><th>NUMERO</th><th>PRODUCTO</th><th>DESCRIPCION</th><th>PRECIO UNITARIO</th><th>CANTIDAD</th><th>PRECIO TOTAL</th></tr>";
+            var x = xmlDoc.getElementsByTagName("PRODUCTO");
+            for (i = 0; i < x.length; i++) {
+                table += "<tr><td>" +
+                    x[i].getElementsByTagName("NUMERO")[0].childNodes[0].nodeValue +
+                    "</td><td>" +
+                    x[i].getElementsByTagName("TITLE")[0].childNodes[0].nodeValue +
+                    "</td><td>" +
+                    x[i].getElementsByTagName("DESCRIPCION")[0].childNodes[0].nodeValue +
+                    "</td><td>" +
+                    x[i].getElementsByTagName("PRECIOU")[0].childNodes[0].nodeValue +
+                    "</td><td>" +
+                    x[i].getElementsByTagName("CANTIDAD")[0].childNodes[0].nodeValue +
+                    "</td><td>" +
+                    x[i].getElementsByTagName("PRECIOT")[0].childNodes[0].nodeValue +
+                    "</td></tr>";
+            }
+            document.getElementById("demo").innerHTML = table;
         }
     </script>
 
