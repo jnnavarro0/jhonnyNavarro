@@ -1,68 +1,109 @@
 <!DOCTYPE html>
 <html>
+
 <head>
-  <title>Pregunta 3</title>
-  <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.8.1/css/all.css" integrity="sha384-50oBUHEmvpQ+1lW4y57PTFmhCaXp0ML5d60M1M7uH2+nqUivzIebhndOJK28anvf" crossorigin="anonymous">
-  <style type="text/css">
-    #background{position:absolute; width:99%; height:130%;}
-    #fixed {position:absolute; top: 0px; left: 0px;}
-  </style>
+	<meta charset="UTF-8">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+	<title>PREGUNTA 3</title>
+	<meta name="description" content="">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+
+	<link rel="stylesheet" href="../../css/bootstrap.min.css">
+	<link rel="stylesheet" href="../../css/bootstrap-theme.min.css">
+	<link rel="stylesheet" href="../../css/main.css">
+
+	<link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.8.1/css/all.css"
+		integrity="sha384-50oBUHEmvpQ+1lW4y57PTFmhCaXp0ML5d60M1M7uH2+nqUivzIebhndOJK28anvf" crossorigin="anonymous">
+	<style type="text/css">
+		#background {
+			position: absolute;
+			width: 99%;
+			height: 130%;
+		}
+
+		#fixed {
+			position: absolute;
+			top: 0px;
+			left: 0px;
+		}
+	</style>
 </head>
+
 <body>
-<div>
-    <img id="background" src="../../Imagenes/fondo.jpg"/> 
-    
-  </div>
-<div id="fixed" style="padding-left:30%; padding-top: 10%;">
-<br>
-    <img src="../../Imagenes/selloespe.jpg"  width="65%" align="center">
-    <h1 style="padding-left:25%;">Pregunta 3</h1>
-<p>Escoja su género de películas preferido para desplegar una tabla con la información correspondiente</p>
-<select id="myselect" onchange="change_myselect(this.value)">
-  <option value="">Elija una de las siguientes opciones.</option>
-  <option value="Patrick Williams">Patrick Williams</option>
-  <option value="Yodel Fredder">Yodel Fredder</option>
-  <option value="Bill Skarsgard">Bill Skarsgård</option>
-  <option value="Vera Farmiga">Vera Farmiga</option>
-</select>
-<p id="demo"></p>
-<br>
-<button onclick="window.location.href='../../index.html'">Menu principal</button>
-</div>
+	<nav class="navbar navbar-default navbar-fixed-top">
+		<div class="container-fluid">
+			<div class="navbar-header">
+				<button class="navbar-toggle" data-toggle="collapse" data-target="#ejemplo-5">
+					<span class="icon-bar"></span>
+					<span class="icon-bar"></span>
+					<span class="icon-bar"></span>
+				</button>
+				<a href="../../index.html" class="navbar-brand">TRABAJO INDIVIDUAL</a>
+			</div>
+			<div class="collapse navbar-collapse" id="ejemplo-5">
+				<ul class="nav navbar-nav">
+					<li><a href="../PREGUNTA_1/index.html">Pregunta 1</a></li>
+					<li><a href="../PREGUNTA_2/index.html">Pregunta 2</a></li>
+					<li><a href="../PREGUNTA_3/index.html">Pregunta 3</a></li>
+					<li><a href="../PREGUNTA_4/index.html">Pregunta 4</a></li>
+				</ul>
+			</div>
+		</div>
+	</nav>
+	<div>
+		<img id="background" src="../../Imagenes/fondo.jpg" />
+	</div>
+	<div id="fixed" style="padding-left:30%; padding-top: 10%;">
+		<br>
+		<img src="../../Imagenes/selloespe.jpg" width="65%" align="center">
+		<h1 style="padding-left:25%;">Pregunta 3</h1>
+		<p>Escoja su género de películas preferido para desplegar una tabla con la información correspondiente</p>
+		<select id="myselect" onchange="change_myselect(this.value)">
+			<option value="">Elija una de las siguientes opciones.</option>
+			<option value="Patrick Williams">Patrick Williams</option>
+			<option value="Yodel Fredder">Yodel Fredder</option>
+			<option value="Bill Skarsgard">Bill Skarsgård</option>
+			<option value="Vera Farmiga">Vera Farmiga</option>
+		</select>
+		<p id="demo"></p>
+		<br>
+		<button onclick="window.location.href='../../index.html'">Menu principal</button>
+	</div>
 
-<script>
+	<script>
 
-  // Desarrolle el script correspondiente
-  function change_myselect(sel) {
-    var obj, dbParam, xmlhttp, dato;
-    
-    obj = { table: sel, limit: 20 };
-    dbParam = JSON.stringify(obj);
-    xmlhttp = new XMLHttpRequest();
-  
-    xmlhttp.onreadystatechange = function() {
-      if(this.readyState == 4 && this.status == 200)  {
-          dato = JSON.parse(this.responseText);
+		// Desarrolle el script correspondiente
+		function change_myselect(sel) {
+			var obj, dbParam, xmlhttp, dato;
 
-          var cuadro = "";
-          cuadro += "<br><center><table border=2><tr><td><b>GENERO</b></td><td><b>NOMBRE</b></td></tr>";
+			obj = { table: sel, limit: 20 };
+			dbParam = JSON.stringify(obj);
+			xmlhttp = new XMLHttpRequest();
 
-          for(var i in dato.peliculas){
-            if(dato.peliculas[i]. Protagonista == sel){
-              cuadro += "<tr><td>" + dato.peliculas[i].Genero + "</td><td>" + dato.peliculas[i].Nombre + "</td></tr>";
-            }
-          }
-      }
-        cuadro += "</table></center>";
-        document.getElementById('demo').innerHTML = cuadro;
-      };
-    
-    
-    xmlhttp.open("GET", "./ListaPeliculas.json", true);
-    xmlhttp.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
-    xmlhttp.send("x=" + dbParam);
-  }
-  </script>
+			xmlhttp.onreadystatechange = function () {
+				if (this.readyState == 4 && this.status == 200) {
+					dato = JSON.parse(this.responseText);
+
+					var cuadro = "";
+					cuadro += "<br><center><table border=2><tr><td><b>GENERO</b></td><td><b>NOMBRE</b></td></tr>";
+
+					for (var i in dato.peliculas) {
+						if (dato.peliculas[i].Protagonista == sel) {
+							cuadro += "<tr><td>" + dato.peliculas[i].Genero + "</td><td>" + dato.peliculas[i].Nombre + "</td></tr>";
+						}
+					}
+				}
+				cuadro += "</table></center>";
+				document.getElementById('demo').innerHTML = cuadro;
+			};
+
+
+			xmlhttp.open("GET", "./ListaPeliculas.json", true);
+			xmlhttp.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
+			xmlhttp.send("x=" + dbParam);
+		}
+	</script>
 
 </body>
+
 </html>
