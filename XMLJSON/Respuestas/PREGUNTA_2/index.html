@@ -48,6 +48,7 @@
 
     <script>
       xmlhttp = new XMLHttpRequest(); 
+
       xmlhttp.open("GET", "ejemplo.xml", false);
       xmlhttp.send();
       xmlDoc = xmlhttp.responseXML; 
@@ -55,6 +56,7 @@
       function CargarDatos(){
         document.getElementById("resolucion").innerHTML = '';
           const n = xmlDoc.getElementsByTagName("nombre");
+          
           for (var i = 0; i < n.length; i++) {
             document.getElementById('resolucion').innerHTML += xmlDoc.getElementsByTagName('nombre')[i].childNodes[0].nodeValue + " come " + 
             xmlDoc.getElementsByTagName('comida')[i].childNodes[0].nodeValue + "<br>";

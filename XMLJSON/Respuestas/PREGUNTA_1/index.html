@@ -25,9 +25,9 @@
 				sobre animales mamiferos.</p>
 			<p id="p3">Animales:</p>
 			<p style="padding-left:15%;">
-				<button onclick="traermamiferor(0);"> Traer animal vivo</button>
-				<button onclick="traermamiferor(1);"> Traer animal muerto</button>
-				<button onclick="traermamiferor(2);"> Traer animal extinto</button>
+				<button onclick="traermamifero(0);"> Traer animal vivo</button>
+				<button onclick="traermamifero(1);"> Traer animal muerto</button>
+				<button onclick="traermamifero(2);"> Traer animal extinto</button>
 			</p>
 			<p style="padding-left:35%;" id="p1"></p>
 			<br>
@@ -45,7 +45,7 @@
 		parser = new DOMParser();
 		xmlDoc = parser.parseFromString(text, "text/xml");
 
-		function traermamiferor(mamifero){
+		function traermamifero(mamifero){
 			document.getElementById('p1').innerHTML = "Mamifero: " + 
 			xmlDoc.getElementsByTagName('mamifero')[mamifero].childNodes[0].nodeValue;
         }	
